@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="card shadow mb-4">
+    <div class="card-body">
+    <table class="table table-striped">
+    <tr> <th>Id</th><th>Nom</th> <th>Rate Film</th> <th>Date Création</th> <th>Genre</th> <th>Image</th></tr>
+    <tbody *ngFor="let film of films">
+    <tr >
+    <td>{{film.idFilm}}</td>
+    <td>{{film.nomFilm}}</td>
+    <td>{{film.rateFilm}}</td>
+    <td>{{film.dateSortie | date:'dd/MM/yyyy'}}</td>
+    <td>{{film.genre?.nomGenre}}</td>
+    <td><img class="card-img-top img-responsive"
+        src="{{film.imageStr}}"
+        style = "height :50px;width:100px">
+        </td>
+    <td><a *ngIf="authService.isAdmin()" class="btn btn-danger" (click)="supprimerFilm(film)">supprimer</a></td>
+    <td><a *ngIf="authService.isAdmin()" class="btn btn-success" [routerLink]="['/updateFilm',film.idFilm]">Modifier</a></td>   
+</tr>
+    </tbody>
+    </table>
+    </div>
+    </div>
+    </div>
